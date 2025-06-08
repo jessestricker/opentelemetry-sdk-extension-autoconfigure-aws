@@ -22,6 +22,8 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.13.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
+    testImplementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:1.51.0")
 }
 
 tasks.withType<JavaCompile> {
@@ -34,6 +36,7 @@ tasks.assemble {
 
 tasks.test {
     useJUnitPlatform()
+    jvmArgs("-XX:+EnableDynamicAgentLoading")
 }
 
 spotless {

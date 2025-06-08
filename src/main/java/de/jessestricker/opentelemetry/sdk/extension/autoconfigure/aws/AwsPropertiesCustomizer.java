@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
 
 public class AwsPropertiesCustomizer {
-  private static final String SECRET_NAME_PROPERTY = "otel.config.aws.secret-name";
+  public static final String SECRET_NAME_PROPERTY = "otel.config.aws.secret-name";
   private static final Gson GSON = new Gson();
 
   private final Supplier<SecretsManagerClient> secretsManagerClientSupplier;
