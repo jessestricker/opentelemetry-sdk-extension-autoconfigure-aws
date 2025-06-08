@@ -1,5 +1,6 @@
 plugins {
     java
+    id("com.gradleup.shadow") version "8.3.6"
 }
 
 repositories {
@@ -15,6 +16,10 @@ dependencies {
 
 tasks.withType<JavaCompile> {
     options.release = 11
+}
+
+tasks.assemble {
+    dependsOn(tasks.shadowJar)
 }
 
 tasks.test {
