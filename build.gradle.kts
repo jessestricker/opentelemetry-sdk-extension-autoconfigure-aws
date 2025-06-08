@@ -1,6 +1,7 @@
 plugins {
     java
     id("com.gradleup.shadow") version "8.3.6"
+    id("com.diffplug.spotless") version "7.0.4"
 }
 
 repositories {
@@ -33,4 +34,10 @@ tasks.assemble {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
 }
