@@ -1,7 +1,7 @@
 plugins {
     java
-    id("com.gradleup.shadow") version "8.3.6"
-    id("com.diffplug.spotless") version "7.0.4"
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.spotless)
 }
 
 repositories {
@@ -9,25 +9,25 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:1.51.0")
+    implementation(platform(libs.opentelemetry.instrumentation.bom))
+    implementation(platform(libs.awssdk.bom))
 
-    implementation(platform("software.amazon.awssdk:bom:2.31.59"))
-    implementation("software.amazon.awssdk:secretsmanager") {
-        exclude("software.amazon.awssdk", "apache-client")
-        exclude("software.amazon.awssdk", "netty-nio-client")
+    compileOnly(libs.opentelemetry.sdk.extension.autoconfigure.spi)
+    implementation(libs.awssdk.secretsmanager) {
+        exclude(libs.awssdk.apacheClient)
+        exclude(libs.awssdk.nettyNioClient)
     }
-    runtimeOnly("software.amazon.awssdk:url-connection-client")
+    runtimeOnly(libs.awssdk.urlConnectionClient)
+    implementation(libs.gson)
 
-    implementation("com.google.code.gson:gson:2.13.1")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.1")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
-    testImplementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:1.51.0")
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.junit.platform.launcher)
+    testImplementation(libs.mockito.junit.jupiter)
+    testImplementation(libs.opentelemetry.sdk.extension.autoconfigure.spi)
 }
 
 tasks.withType<JavaCompile> {
-    options.release = 11
+    options.release = libs.versions.java.map { it.toInt() }
 }
 
 tasks.assemble {
@@ -43,4 +43,9 @@ spotless {
     java {
         googleJavaFormat()
     }
+}
+
+fun <T : ModuleDependency> T.exclude(provider: Provider<out Dependency>): T {
+    val dependency = provider.get()
+    return exclude(group = dependency.group, module = dependency.name)
 }

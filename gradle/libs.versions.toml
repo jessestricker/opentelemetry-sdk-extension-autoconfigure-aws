@@ -1,0 +1,27 @@
+[versions]
+java = "11"
+
+awssdk = "2.31.63"
+gson = "2.13.1"
+opentelemetry-instrumentation = "2.16.0"
+
+junit-jupiter = "5.13.1"
+mockito = "5.18.0"
+
+[plugins]
+shadow = "com.gradleup.shadow:8.3.6"
+spotless = "com.diffplug.spotless:7.0.4"
+
+[libraries]
+awssdk-bom = { module = "software.amazon.awssdk:bom", version.ref = "awssdk" }
+awssdk-secretsmanager = { module = "software.amazon.awssdk:secretsmanager" }
+awssdk-urlConnectionClient = { module = "software.amazon.awssdk:url-connection-client" }
+awssdk-apacheClient = { module = "software.amazon.awssdk:apache-client" }
+awssdk-nettyNioClient = { module = "software.amazon.awssdk:netty-nio-client" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+opentelemetry-instrumentation-bom = { module = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom", version.ref = "opentelemetry-instrumentation" }
+opentelemetry-sdk-extension-autoconfigure-spi = { module = "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi" }
+
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
