@@ -17,7 +17,7 @@ dependencies {
         exclude(libs.awssdk.apacheClient)
         exclude(libs.awssdk.nettyNioClient)
     }
-    runtimeOnly(libs.awssdk.urlConnectionClient)
+    implementation(libs.awssdk.urlConnectionClient)
     implementation(libs.gson)
 
     testImplementation(libs.junit.jupiter)
