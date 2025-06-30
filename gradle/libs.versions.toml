@@ -9,7 +9,7 @@ junit-jupiter = "5.13.1"
 mockito = "5.18.0"
 
 [plugins]
-shadow = "com.gradleup.shadow:8.3.6"
+shadow = "com.gradleup.shadow:8.3.7"
 spotless = "com.diffplug.spotless:7.0.4"
 
 [libraries]
