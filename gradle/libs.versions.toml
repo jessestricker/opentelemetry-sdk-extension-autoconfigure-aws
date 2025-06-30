@@ -1,7 +1,7 @@
 [versions]
 java = "11"
 
-awssdk = "2.31.63"
+awssdk = "2.31.73"
 gson = "2.13.1"
 opentelemetry-instrumentation = "2.16.0"
 
